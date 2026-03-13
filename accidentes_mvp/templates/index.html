@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}Inicio{% endblock %}
+{% block content %}
+<section class="hero">
+  <h1>Registro digital de accidentes sin lesionados</h1>
+  <p>Documenta daños materiales, licencias, fotos, ubicación y genera un QR para revisión posterior por tránsito o aseguradoras.</p>
+  <div class="actions">
+    <a class="btn" href="{{ url_for('register') }}">Crear cuenta</a>
+    <a class="btn secondary" href="{{ url_for('login') }}">Iniciar sesión</a>
+  </div>
+</section>
+{% endblock %}

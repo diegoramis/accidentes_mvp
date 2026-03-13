@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block title %}Nuevo caso{% endblock %}
+{% block content %}
+<h2>Registrar accidente</h2>
+<form method="post" enctype="multipart/form-data" class="card form-grid big-form">
+  <label>Fecha del accidente<input type="date" name="event_date" required></label>
+  <label>Hora del accidente<input type="time" name="event_time" required></label>
+  <label>Descripción del lugar<input type="text" name="location_text" required></label>
+
+  <div class="row2">
+    <label>Latitud<input type="text" id="latitude" name="latitude" required></label>
+    <label>Longitud<input type="text" id="longitude" name="longitude" required></label>
+  </div>
+  <button type="button" class="btn secondary" onclick="getLocation()">Tomar geolocalización</button>
+
+  <label>Relato breve de lo ocurrido
+    <textarea name="narrative" rows="4" required></textarea>
+  </label>
+
+  <h3>Conductor 1</h3>
+  <div class="row2">
+    <label>Nombre completo<input type="text" name="driver1_name" required></label>
+    <label>No. licencia<input type="text" name="driver1_license" required></label>
+    <label>Teléfono<input type="text" name="driver1_phone"></label>
+  </div>
+
+  <h3>Vehículo 1</h3>
+  <div class="row2">
+    <label>Propietario<input type="text" name="vehicle1_owner" required></label>
+    <label>Placa<input type="text" name="vehicle1_plate" required></label>
+    <label>Marca<input type="text" name="vehicle1_brand" required></label>
+    <label>Modelo<input type="text" name="vehicle1_model" required></label>
+    <label>Color<input type="text" name="vehicle1_color"></label>
+  </div>
+
+  <h3>Conductor 2</h3>
+  <div class="row2">
+    <label>Nombre completo<input type="text" name="driver2_name" required></label>
+    <label>No. licencia<input type="text" name="driver2_license" required></label>
+    <label>Teléfono<input type="text" name="driver2_phone"></label>
+  </div>
+
+  <h3>Vehículo 2</h3>
+  <div class="row2">
+    <label>Propietario<input type="text" name="vehicle2_owner" required></label>
+    <label>Placa<input type="text" name="vehicle2_plate" required></label>
+    <label>Marca<input type="text" name="vehicle2_brand" required></label>
+    <label>Modelo<input type="text" name="vehicle2_model" required></label>
+    <label>Color<input type="text" name="vehicle2_color"></label>
+  </div>
+
+  <h3>Fotografías</h3>
+  <label>Fotos de revisión de los carros<input type="file" name="vehicle_review" accept="image/*" multiple capture="environment"></label>
+  <label>Fotos de licencias de los conductores<input type="file" name="driver_licenses" accept="image/*" multiple capture="environment"></label>
+  <label>Fotos del estado de los autos<input type="file" name="vehicle_damage" accept="image/*" multiple capture="environment"></label>
+
+  <button class="btn" type="submit">Guardar caso</button>
+</form>
+{% endblock %}

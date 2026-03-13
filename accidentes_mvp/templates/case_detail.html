@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}Detalle del caso{% endblock %}
+{% block content %}
+<h2>Detalle del caso #{{ case.id }}</h2>
+<div class="card">
+  <p><strong>Fecha y hora:</strong> {{ case.event_date }} {{ case.event_time }}</p>
+  <p><strong>Ubicación:</strong> {{ case.location_text }}</p>
+  <p><strong>Coordenadas:</strong> {{ case.latitude }}, {{ case.longitude }}</p>
+  <p><strong>Descripción:</strong> {{ case.narrative }}</p>
+  <p><strong>Token público:</strong> {{ case.public_token }}</p>
+  <p><strong>Enlace público:</strong> <a href="{{ url_for('public_case', token=case.public_token) }}" target="_blank">Abrir caso público</a></p>
+  <img class="qr" src="{{ url_for('qrcode_file', filename=case.public_token ~ '.png') }}" alt="Código QR">
+</div>
+
+<div class="grid two-col">
+  <div class="card">
+    <h3>Conductores</h3>
+    {% for driver in case.drivers %}
+      <p><strong>{{ driver.full_name }}</strong><br>Licencia: {{ driver.license_number }}<br>Teléfono: {{ driver.phone }}</p>
+    {% endfor %}
+  </div>
+  <div class="card">
+    <h3>Vehículos</h3>
+    {% for vehicle in case.vehicles %}
+      <p><strong>{{ vehicle.plate }}</strong><br>{{ vehicle.brand }} {{ vehicle.model }} - {{ vehicle.color }}<br>Propietario: {{ vehicle.owner_name }}</p>
+    {% endfor %}
+  </div>
+</div>
+
+<div class="card">
+  <h3>Fotografías</h3>
+  <div class="gallery">
+    {% for photo in case.photos %}
+      <figure>
+        <img src="{{ url_for('static', filename=photo.file_path) }}" alt="{{ photo.category }}">
+        <figcaption>{{ photo.category }}</figcaption>
+      </figure>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

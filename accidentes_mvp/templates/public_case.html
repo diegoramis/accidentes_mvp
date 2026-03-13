@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}Consulta pública{% endblock %}
+{% block content %}
+<h2>Consulta pública del caso #{{ case.id }}</h2>
+<div class="card">
+  <p><strong>Estado:</strong> {{ case.status }}</p>
+  <p><strong>Fecha y hora:</strong> {{ case.event_date }} {{ case.event_time }}</p>
+  <p><strong>Ubicación:</strong> {{ case.location_text }}</p>
+  <p><strong>Coordenadas:</strong> {{ case.latitude }}, {{ case.longitude }}</p>
+  <p><strong>Descripción:</strong> {{ case.narrative }}</p>
+</div>
+<div class="grid two-col">
+  <div class="card">
+    <h3>Conductores</h3>
+    {% for driver in case.drivers %}
+      <p><strong>{{ driver.full_name }}</strong><br>Licencia: {{ driver.license_number }}<br>Teléfono: {{ driver.phone }}</p>
+    {% endfor %}
+  </div>
+  <div class="card">
+    <h3>Vehículos</h3>
+    {% for vehicle in case.vehicles %}
+      <p><strong>{{ vehicle.plate }}</strong><br>{{ vehicle.brand }} {{ vehicle.model }} - {{ vehicle.color }}<br>Propietario: {{ vehicle.owner_name }}</p>
+    {% endfor %}
+  </div>
+</div>
+<div class="card">
+  <h3>Evidencia fotográfica</h3>
+  <div class="gallery">
+    {% for photo in case.photos %}
+      <figure>
+        <img src="{{ url_for('static', filename=photo.file_path) }}" alt="{{ photo.category }}">
+        <figcaption>{{ photo.category }}</figcaption>
+      </figure>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

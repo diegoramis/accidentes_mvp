@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}Panel{% endblock %}
+{% block content %}
+<div class="header-row">
+  <h2>Mis casos registrados</h2>
+  <a class="btn" href="{{ url_for('new_accident') }}">Registrar nuevo caso</a>
+</div>
+<div class="grid">
+  {% for case in cases %}
+    <article class="card">
+      <h3>Caso #{{ case.id }}</h3>
+      <p><strong>Fecha:</strong> {{ case.event_date }} {{ case.event_time }}</p>
+      <p><strong>Ubicación:</strong> {{ case.location_text }}</p>
+      <p><strong>Estado:</strong> {{ case.status }}</p>
+      <a class="btn secondary" href="{{ url_for('case_detail', case_id=case.id) }}">Ver detalle</a>
+    </article>
+  {% else %}
+    <div class="card"><p>Aún no has registrado accidentes.</p></div>
+  {% endfor %}
+</div>
+{% endblock %}

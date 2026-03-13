@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}Registro{% endblock %}
+{% block content %}
+<h2>Crear usuario</h2>
+<form method="post" class="card form-grid">
+  <label>Nombre completo<input type="text" name="full_name" required></label>
+  <label>Correo electrónico<input type="email" name="email" required></label>
+  <label>Contraseña<input type="password" name="password" required minlength="6"></label>
+  <button class="btn" type="submit">Registrar</button>
+</form>
+{% endblock %}
